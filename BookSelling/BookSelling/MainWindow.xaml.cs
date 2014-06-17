@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,16 @@ namespace BookSelling
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private static string connectionString = BookSelling.Properties.Settings.Default.connectionString;
+
         public MainWindow()
         {
             InitializeComponent();
+
+
+            // testing connection with database
+            lst.ItemsSource = DatabaseConnectionFile.getDataTable("Users").DefaultView;
         }
     }
 }
