@@ -35,29 +35,40 @@ namespace BookSelling
         public MainWindow()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.Remembered==true)
+            {
+                LoginView.Visibility = Visibility.Collapsed;
+                loadTimer();
+                widths = 75;
+                heights = 25;
+                Timer.Start();
+                LoggedAs.Content = "Logged as: " + Properties.Settings.Default.UserName;
+            }
             // testing connection with database
-        //    lst.ItemsSource = DatabaseConnectionFile.getDataTable("Users").DefaultView;
+            //    lst.ItemsSource = DatabaseConnectionFile.getDataTable("Users").DefaultView;
         }
 
-        public void loadTimer() {
+        public void loadTimer()
+        {
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(HeightTimer_Tick);
             Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
 
         private void HeightTimer_Tick(object sender, EventArgs e)
-        {       
+        {
 
-                
-             CommandManager.InvalidateRequerySuggested();
-             Application.Current.MainWindow.Height += 8;
-             if (heights <= 0) {
-                 Timer.Stop();
-                 Timer.Tick -= new EventHandler(HeightTimer_Tick);
-                 Timer.Tick += new EventHandler(WidthTimer_Tick);
-                 Timer.Start();
-             }
-             heights -= 1;
+
+            CommandManager.InvalidateRequerySuggested();
+            Application.Current.MainWindow.Height += 8;
+            if (heights <= 0)
+            {
+                Timer.Stop();
+                Timer.Tick -= new EventHandler(HeightTimer_Tick);
+                Timer.Tick += new EventHandler(WidthTimer_Tick);
+                Timer.Start();
+            }
+            heights -= 1;
         }
 
         private void WidthTimer_Tick(object sender, EventArgs e)
@@ -112,18 +123,23 @@ namespace BookSelling
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            if (checkRequiredFields()) {
+            if (checkRequiredFields())
+            {
                 LoginView.Visibility = Visibility.Collapsed;
                 loadTimer();
                 widths = 75;
                 heights = 25;
                 Timer.Start();
                 LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
+                Properties.Settings.Default.Remembered =(bool) RememberChk.IsChecked;
+                Properties.Settings.Default.UserName = UsernameTxt.Text;
+                Properties.Settings.Default.Save();
             }
 
         }
 
-        private bool checkRequiredFields() {
+        private bool checkRequiredFields()
+        {
             bool t = true;
 
             if (UsernameTxt.Text == "")
@@ -175,10 +191,14 @@ namespace BookSelling
             {
                 clearLoginFields();
             }
-            
+            Properties.Settings.Default.Remembered = false;
+            Properties.Settings.Default.UserName = null;
+            Properties.Settings.Default.Save();
+
         }
 
-        private void clearLoginFields() {
+        private void clearLoginFields()
+        {
             UsernameTxt.Text = "";
             PasswordTxt.Password = "";
             UserSelection.SelectedIndex = 0;
