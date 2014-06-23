@@ -10,47 +10,47 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-    <Grid Name="LoginView" Visibility="Visible">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="6*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="Bold" FontFamily="Comic Sans" HorizontalAlignment="Center" VerticalAlignment="Center">Book Selling</Label>
-        <Image Name="image" Grid.Row="0" Grid.Column="1" Source="Resources/books.jpg" HorizontalAlignment="Right"></Image>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-            <Label FontSize="18" Margin="0,0,0,10" >Login Page</Label>
-            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
-                <Label FontSize="15" Margin="5,5,5,5">Username:</Label>
-                <TextBox Name="UsernameTxt" Width="120" Height="25" Margin="5,5,5,5"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                <Label FontSize="15" Margin="5,5,5,5">Password:</Label>
+        <Grid Name="LoginView" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="6*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="Bold" FontFamily="Comic Sans" HorizontalAlignment="Center" VerticalAlignment="Center">Book Selling</Label>
+            <Image Name="image" Grid.Row="0" Grid.Column="1" Source="Resources/books.jpg" HorizontalAlignment="Right"></Image>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <Label FontSize="18" Margin="0,0,0,10" >Login Page</Label>
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
+                    <Label FontSize="15" Margin="5,5,5,5">Username:</Label>
+                    <TextBox Name="UsernameTxt" Width="120" Height="25" Margin="5,5,5,5"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Label FontSize="15" Margin="5,5,5,5">Password:</Label>
                     <PasswordBox Name="PasswordTxt"  Width="120" Height="25"   Margin="5,5,5,5" ></PasswordBox>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                <Label FontSize="15" Margin="5,5,5,5">Authority:</Label>
-                <ComboBox Name="UserSelection" Margin="5,5,5,5" Width="120" Height="25" HorizontalAlignment="Right" SelectedIndex="0">
-                    <ComboBoxItem>User</ComboBoxItem>
-                    <ComboBoxItem>Administrator</ComboBoxItem>
-            </ComboBox>
-            </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Label FontSize="15" Margin="5,5,5,5">Authority:</Label>
+                    <ComboBox Name="UserSelection" Margin="5,5,5,5" Width="120" Height="25" HorizontalAlignment="Right" SelectedIndex="0">
+                        <ComboBoxItem>User</ComboBoxItem>
+                        <ComboBoxItem>Administrator</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
                 <CheckBox Name="RememberChk" Margin="20,0,0,0" Foreground="DarkRed" FontWeight="Medium">Remember me</CheckBox>
-            <Button Name="LoginBtn" Width="150" Margin="5,10,5,0" Click="LoginBtn_Click" >Login</Button>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
-        <Label  Name="usernameValidator" Margin="0,43,0,0" FontSize="20" FontWeight="Bold" Visibility="Hidden" Foreground="DarkRed">!</Label>
-            <Label  Name="passswordValidator" Margin="0,5,0,0" FontSize="20" FontWeight="Bold"  Visibility="Hidden" Foreground="DarkRed">!</Label>
+                <Button Name="LoginBtn" Width="150" Margin="5,10,5,0" Click="LoginBtn_Click" >Login</Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <Label  Name="usernameValidator" Margin="0,43,0,0" FontSize="20" FontWeight="Bold" Visibility="Hidden" Foreground="DarkRed">!</Label>
+                <Label  Name="passswordValidator" Margin="0,5,0,0" FontSize="20" FontWeight="Bold"  Visibility="Hidden" Foreground="DarkRed">!</Label>
 
-        </StackPanel>
-    </Grid>
-        
+            </StackPanel>
+        </Grid>
+
         <Grid Name="BookPresentation" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -79,8 +79,17 @@
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">Basket</Label>
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" FontWeight="Bold" MouseDown="LogOut_MouseDown">Log Out</Label>
             </StackPanel>
+            <ListBox Name="lbKnigi" Grid.Column="1" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" Margin="5">
+                            <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
-        
+
     </Grid>
-    
+
 </Window>

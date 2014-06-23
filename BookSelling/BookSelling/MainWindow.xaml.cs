@@ -46,6 +46,7 @@ namespace BookSelling
             }
             // testing connection with database
             //    lst.ItemsSource = DatabaseConnectionFile.getDataTable("Users").DefaultView;
+            lbKnigi.ItemsSource = DatabaseConnectionFile.getDataTable("Books").DefaultView;
         }
 
         public void loadTimer()
@@ -194,7 +195,6 @@ namespace BookSelling
             Properties.Settings.Default.Remembered = false;
             Properties.Settings.Default.UserName = null;
             Properties.Settings.Default.Save();
-
         }
 
         private void clearLoginFields()

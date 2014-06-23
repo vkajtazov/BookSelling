@@ -25,9 +25,8 @@ namespace BookSelling.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=\"C:\\Users\\Viktor\\Documents\\Visual St" +
-            "udio 2013\\Projects\\Project\\BookSelling\\BookSelling\\BookSelling\\Database1.mdf\";In" +
-            "tegrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=D:\\Programs\\C#\\BookSelling\\BookSelli" +
+            "ng\\BookSelling\\Database1.mdf;Integrated Security=True")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));
