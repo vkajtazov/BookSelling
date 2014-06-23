@@ -1,7 +1,7 @@
 ﻿<Window x:Class="BookSelling.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Book Selling" Height="350" Width="300">
+        Title="Book Selling" Height="380" Width="300">
 
     <Grid>
     <Grid Name="LoginView" Visibility="Visible">
@@ -25,7 +25,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                 <Label FontSize="15" Margin="5,5,5,5">Password:</Label>
-                <TextBox Name="PasswordTxt" Width="120" Height="25" Margin="5,5,5,5"></TextBox>
+                    <PasswordBox Name="PasswordTxt"  Width="120" Height="25"   Margin="5,5,5,5" ></PasswordBox>
+
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                 <Label FontSize="15" Margin="5,5,5,5">Authority:</Label>
@@ -34,6 +35,7 @@
                     <ComboBoxItem>Administrator</ComboBoxItem>
             </ComboBox>
             </StackPanel>
+                <CheckBox Name="RememberChk" Margin="20,0,0,0" Foreground="DarkRed" FontWeight="Medium">Remember me</CheckBox>
             <Button Name="LoginBtn" Width="150" Margin="5,10,5,0" Click="LoginBtn_Click" >Login</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
@@ -50,11 +52,15 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
             <Label Name="LoggedAs" Grid.Row="0" Grid.Column="0" FontSize="15" FontWeight="Bold"></Label>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">Basket</Label>
+                <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" FontWeight="Bold" MouseDown="LogOut_MouseDown">Log Out</Label>
+            </StackPanel>
         </Grid>
         
     </Grid>

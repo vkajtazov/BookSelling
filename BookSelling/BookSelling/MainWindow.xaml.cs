@@ -26,31 +26,23 @@ namespace BookSelling
 
         private static string connectionString = BookSelling.Properties.Settings.Default.connectionString;
         private string[] MenuList;
-        private static int Height = 50;
-        private static int Width = 150;
-        private DispatcherTimer HeightTimer;
-        private DispatcherTimer WidthTimer;
+        private static int heights = 25;
+        private static int widths = 75;
+        private DispatcherTimer Timer;
+
+
 
         public MainWindow()
         {
             InitializeComponent();
-            loadHeightTimer();
-            loadWidthTimer();
             // testing connection with database
         //    lst.ItemsSource = DatabaseConnectionFile.getDataTable("Users").DefaultView;
         }
 
-        public void loadHeightTimer() {
-            HeightTimer = new DispatcherTimer();
-            HeightTimer.Tick += new EventHandler(HeightTimer_Tick);
-            HeightTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-        }
-
-        public void loadWidthTimer()
-        {
-            WidthTimer = new DispatcherTimer();
-            WidthTimer.Tick += new EventHandler(WidthTimer_Tick);
-            WidthTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+        public void loadTimer() {
+            Timer = new DispatcherTimer();
+            Timer.Tick += new EventHandler(HeightTimer_Tick);
+            Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
 
         private void HeightTimer_Tick(object sender, EventArgs e)
@@ -58,12 +50,14 @@ namespace BookSelling
 
                 
              CommandManager.InvalidateRequerySuggested();
-             Application.Current.MainWindow.Height += 2;
-             if (Height <= 0) {
-                 HeightTimer.Stop();
-                 WidthTimer.Start();
+             Application.Current.MainWindow.Height += 4;
+             if (heights <= 0) {
+                 Timer.Stop();
+                 Timer.Tick -= new EventHandler(HeightTimer_Tick);
+                 Timer.Tick += new EventHandler(WidthTimer_Tick);
+                 Timer.Start();
              }
-             Height -= 1;
+             heights -= 1;
         }
 
         private void WidthTimer_Tick(object sender, EventArgs e)
@@ -71,13 +65,45 @@ namespace BookSelling
 
 
             CommandManager.InvalidateRequerySuggested();
-            Application.Current.MainWindow.Width += 2;
-            if (Width <= 0)
+            Application.Current.MainWindow.Width += 4;
+            if (widths <= 0)
             {
-                WidthTimer.Stop();
+                Timer.Stop();
+                Timer.Tick -= new EventHandler(WidthTimer_Tick);
                 BookPresentation.Visibility = Visibility.Visible;
             }
-            Width -= 1;
+            widths -= 1;
+        }
+
+        private void MinimumWidthTimer_Tick(object sender, EventArgs e)
+        {
+
+
+            CommandManager.InvalidateRequerySuggested();
+            Application.Current.MainWindow.Width -= 4;
+            if (widths <= 0)
+            {
+                Timer.Stop();
+                Timer.Tick -= new EventHandler(MinimumWidthTimer_Tick);
+                LoginView.Visibility = Visibility.Visible;
+            }
+            widths -= 1;
+        }
+
+        private void MininumHeightTimer_Tick(object sender, EventArgs e)
+        {
+
+
+            CommandManager.InvalidateRequerySuggested();
+            Application.Current.MainWindow.Height -= 4;
+            if (heights <= 0)
+            {
+                Timer.Stop();
+                Timer.Tick -= new EventHandler(MininumHeightTimer_Tick);
+                Timer.Tick += new EventHandler(MinimumWidthTimer_Tick);
+                Timer.Start();
+            }
+            heights -= 1;
         }
 
 
@@ -88,7 +114,10 @@ namespace BookSelling
 
             if (checkRequiredFields()) {
                 LoginView.Visibility = Visibility.Collapsed;
-                HeightTimer.Start();
+                loadTimer();
+                widths = 75;
+                heights = 25;
+                Timer.Start();
                 LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
             }
 
@@ -102,7 +131,7 @@ namespace BookSelling
                 usernameValidator.Visibility = Visibility.Visible;
                 t = false;
             }
-            if (PasswordTxt.Text == "")
+            if (PasswordTxt.Password == "")
             {
                 passswordValidator.Visibility = Visibility.Visible;
                 t = false;
@@ -112,12 +141,47 @@ namespace BookSelling
             {
                 usernameValidator.Visibility = Visibility.Hidden;
             }
-            if (PasswordTxt.Text != "")
+            if (PasswordTxt.Password != "")
             {
                 passswordValidator.Visibility = Visibility.Hidden;
             }
             return t;
         }
+
+        private void Label_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Label l = (Label)sender;
+            l.Foreground = Brushes.Red;
+        }
+
+        private void Label_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Label l = (Label)sender;
+            l.Foreground = Brushes.DarkRed;
+        }
+
+        private void LogOut_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            widths = 75;
+            heights = 25;
+
+            BookPresentation.Visibility = Visibility.Collapsed;
+
+            Timer.Tick += new EventHandler(MininumHeightTimer_Tick);
+            Timer.Start();
+            if (!(bool)RememberChk.IsChecked)
+            {
+                clearLoginFields();
+            }
+            
+        }
+
+        private void clearLoginFields() {
+            UsernameTxt.Text = "";
+            PasswordTxt.Password = "";
+            UserSelection.SelectedIndex = 0;
+        }
+
 
 
 
