@@ -23,5 +23,18 @@ namespace BookSelling
             adapter.Fill(ds, table);
             return ds.Tables[0];
         }
+
+        public static DataTable getCategoryTable(int cat)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand("SELECT * from Books WHERE Genre="+cat,
+                connection);
+            command.CommandType = CommandType.Text;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "Tabela");
+            return ds.Tables[0];
+        }
     }
 }

@@ -71,12 +71,12 @@
             <Label Name="LoggedAs" Grid.Row="0" Grid.Column="0" FontSize="15" FontWeight="Bold"></Label>
 
             <Menu Grid.Column="0" Grid.Row="1">
-                <MenuItem  Header="All Books"></MenuItem>
+                <MenuItem  Header="All Books" Click="AllBooksClick"></MenuItem>
                 <MenuItem Header="Categories">
-                    <MenuItem Header="Drama"></MenuItem>
-                    <MenuItem Header="Romance"></MenuItem>
-                    <MenuItem Header="Tragedy"></MenuItem>
-                    <MenuItem Header="Comedy"></MenuItem>
+                    <MenuItem Tag="1"  Header="Drama" Click="CategoryClick"></MenuItem>
+                    <MenuItem Tag="2" Header="Romance" Click="CategoryClick"></MenuItem>
+                    <MenuItem Tag="4" Header="Tragedy" Click="CategoryClick"></MenuItem>
+                    <MenuItem Tag="5" Header="Comedy" Click="CategoryClick"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Promotions"></MenuItem>
                 <MenuItem Header="Collections"></MenuItem>
