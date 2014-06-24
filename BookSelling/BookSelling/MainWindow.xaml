@@ -88,13 +88,13 @@
                         <Border BorderThickness="1" Margin="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Path=Url, Converter={StaticResource ImageConv}}" Grid.Column="0"></Image>
+                                <Image Source="{Binding Path=Url}" Width="100" Height="100" Grid.Column="0"></Image>
                                 <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
@@ -120,12 +120,12 @@
                                         <TextBlock>Price:</TextBlock>
                                         <TextBlock Text="{Binding Path=Price}"></TextBlock>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
                                         <TextBlock>Promotions:</TextBlock>
                                         <TextBlock Text="{Binding Path=Promotions}"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
-                                <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <TextBlock HorizontalAlignment="Center">Count: </TextBlock>
                                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Count}"></TextBlock>
                                 </StackPanel>
@@ -141,6 +141,7 @@
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
+                    
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>

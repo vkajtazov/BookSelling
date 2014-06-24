@@ -779,6 +779,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource HoverBorderBrush}"/>
                             <Setter TargetName="Border" Property="TextBlock.FontSize" Value="20" />
+                            <Setter Property="IsSelected" Value="True"></Setter>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{StaticResource SelectedBackgroundBrush}"/>
