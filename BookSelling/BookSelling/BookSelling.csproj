@@ -127,9 +127,9 @@
     <None Include="Resources\smrtta na nil.jpg" />
     <None Include="Resources\sloboda.png" />
     <None Include="Resources\odbrana.jpg" />
-    <None Include="Resources\na edna svadba.jpg" />
-    <None Include="Resources\monahot.jpg" />
-    <None Include="Resources\don kihot.jpg" />
+    <Resource Include="Resources\na edna svadba.jpg" />
+    <Resource Include="Resources\monahot.jpg" />
+    <Resource Include="Resources\don kihot.jpg" />
     <Resource Include="Resources\books.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -14,9 +14,22 @@ namespace BookSelling
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            string tmp = Path.Combine(Directory.GetCurrentDirectory(), value.ToString());
-            Debug.WriteLine(tmp);
-            return new BitmapImage(new Uri(tmp));
+            try
+            {
+                string tmp = value.ToString();
+                Debug.WriteLine(tmp);
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri("pack://application:,,,/AssemblyName;component/Resources/" + tmp);
+                logo.EndInit();
+                return logo;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
