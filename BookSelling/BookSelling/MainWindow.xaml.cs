@@ -204,6 +204,18 @@ namespace BookSelling
             UserSelection.SelectedIndex = 0;
         }
 
+        private void CategoryClick(object sender, RoutedEventArgs e)
+        {
+            MenuItem item = (MenuItem)sender;
+            int i = int.Parse(item.Tag.ToString());
+            lbKnigi.ItemsSource=DatabaseConnectionFile.getCategoryTable(i).DefaultView;
+        }
+
+        private void AllBooksClick(object sender, RoutedEventArgs e)
+        {
+            lbKnigi.ItemsSource = DatabaseConnectionFile.getDataTable("Books").DefaultView;
+        }
+
 
 
 

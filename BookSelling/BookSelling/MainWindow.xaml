@@ -9,6 +9,10 @@
                 <ResourceDictionary Source="Tmplejt.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:ImageConv x:Key="ImageConv"></local:ImageConv>
+            <local:CheckPromotionsConverter x:Key="CheckPromotionsConverter"></local:CheckPromotionsConverter>
+            <local:isPromotionConverter x:Key="isPromotions"></local:isPromotionConverter>
+            <local:PromotionPriceConverter x:Key="PromotionPrice"></local:PromotionPriceConverter>
+            <local:GenreConverter x:Key="GenreConverter"></local:GenreConverter>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -67,32 +71,31 @@
             <Label Name="LoggedAs" Grid.Row="0" Grid.Column="0" FontSize="15" FontWeight="Bold"></Label>
 
             <Menu Grid.Column="0" Grid.Row="1">
-                <MenuItem  Header="All Books"></MenuItem>
+                <MenuItem  Header="All Books" Click="AllBooksClick"></MenuItem>
                 <MenuItem Header="Categories">
-                    <MenuItem Header="Drama"></MenuItem>
-                    <MenuItem Header="Romance"></MenuItem>
-                    <MenuItem Header="Tragedy"></MenuItem>
-                    <MenuItem Header="Comedy"></MenuItem>
+                    <MenuItem Tag="1"  Header="Drama" Click="CategoryClick"></MenuItem>
+                    <MenuItem Tag="2" Header="Romance" Click="CategoryClick"></MenuItem>
+                    <MenuItem Tag="4" Header="Tragedy" Click="CategoryClick"></MenuItem>
+                    <MenuItem Tag="5" Header="Comedy" Click="CategoryClick"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Promotions"></MenuItem>
                 <MenuItem Header="Collections"></MenuItem>
             </Menu>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">Basket</Label>
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" FontWeight="Bold" MouseDown="LogOut_MouseDown">Log Out</Label>
             </StackPanel>
-            <ListBox Name="lbKnigi" Grid.Column="1" Grid.Row="1">
+            <ListBox Name="lbKnigi" Grid.Column="1" Grid.Row="1" FontFamily="Comic Sans" FontSize="15">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="1" Margin="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{Binding Path=Url}" Width="100" Height="100" Grid.Column="0"></Image>
                                 <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -111,27 +114,27 @@
                                     </StackPanel>
                                     <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                         <TextBlock Text="Genre: "></TextBlock>
-                                        <TextBlock Text="{Binding Path=Genre}"></TextBlock>
+                                        <TextBlock Text="{Binding Path=Genre, Converter={StaticResource GenreConverter}}"></TextBlock>
                                     </StackPanel>
                                 </Grid>
 
                                 <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                         <TextBlock>Price:</TextBlock>
-                                        <TextBlock Text="{Binding Path=Price}"></TextBlock>
+                                        <TextBlock Text="{Binding Path=Price}" TextDecorations="{Binding Path=Promotions,  Converter={StaticResource CheckPromotionsConverter}}"></TextBlock>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                                        <TextBlock>Promotions:</TextBlock>
-                                        <TextBlock Text="{Binding Path=Promotions}"></TextBlock>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Left" Visibility="{Binding Path=Promotions, Converter={StaticResource isPromotions}}">
+                                        <TextBlock>Prom Price:</TextBlock>
+                                        <TextBlock Text="{Binding  Converter={StaticResource PromotionPrice}}"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
-                                <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <TextBlock HorizontalAlignment="Center">Count: </TextBlock>
                                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Count}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Button Name="btnBuy" VerticalAlignment="Center" HorizontalAlignment="Center" >Buy</Button>
-                                    <TextBox Name="BuyCount" Margin="5,0,0,0" Width="20"></TextBox>
+                                    <TextBox Name="BuyCount" Margin="5,0,0,0" Width="20">1</TextBox>
                                 </StackPanel>
                             </Grid>
                         </Border>
