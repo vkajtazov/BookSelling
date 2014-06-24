@@ -119,22 +119,40 @@ namespace BookSelling
         }
 
 
+        private void Login() {
+            checkAuthority();
+            LoginView.Visibility = Visibility.Collapsed;
+            loadTimer();
+            widths = 75;
+            heights = 25;
+            Timer.Start();
+            LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
+            Properties.Settings.Default.Remembered = (bool)RememberChk.IsChecked;
+            Properties.Settings.Default.UserName = UsernameTxt.Text;
+            Properties.Settings.Default.Save();
+        }
 
+        private void checkAuthority() { 
+            ComboBoxItem item = (ComboBoxItem)UserSelection.SelectedItem;
+            string t = item.Content.ToString();
+            if (t == "User") AdminPanelBtn.Visibility = Visibility.Hidden;
+            if (t == "Administrator") AdminPanelBtn.Visibility = Visibility.Visible;
+        }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
 
             if (checkRequiredFields())
             {
-                LoginView.Visibility = Visibility.Collapsed;
-                loadTimer();
-                widths = 75;
-                heights = 25;
-                Timer.Start();
-                LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
-                Properties.Settings.Default.Remembered =(bool) RememberChk.IsChecked;
-                Properties.Settings.Default.UserName = UsernameTxt.Text;
-                Properties.Settings.Default.Save();
+                if (DatabaseConnectionFile.isLogin(UsernameTxt.Text, PasswordTxt.Password, getAuthority()))
+                {
+                    Login();
+                }
+                else
+                {
+                    clearLoginFields();
+                    checkRequiredFields();
+                }
             }
 
         }
@@ -202,6 +220,15 @@ namespace BookSelling
             UsernameTxt.Text = "";
             PasswordTxt.Password = "";
             UserSelection.SelectedIndex = 0;
+        }
+
+        private int getAuthority() {
+
+            ComboBoxItem item = (ComboBoxItem) UserSelection.SelectedItem;
+
+            if (item.Content.ToString()== "User") return 2;
+            else if (item.Content.ToString() == "Administrator") return 1;
+            return 0;
         }
 
         private void CategoryClick(object sender, RoutedEventArgs e)
