@@ -25,8 +25,32 @@ namespace BookSelling.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\User\\Source\\Repos\\BookSelli" +
-            "ng\\BookSelling\\BookSelling\\Database1.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Remembered {
+            get {
+                return ((bool)(this["Remembered"]));
+            }
+            set {
+                this["Remembered"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserName {
+            get {
+                return ((string)(this["UserName"]));
+            }
+            set {
+                this["UserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=D:\\Programs\\C#\\BookSelling\\BookSelli" +
+            "ng\\BookSelling\\Database1.mdf;Integrated Security=True")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));
