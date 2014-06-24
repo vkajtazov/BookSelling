@@ -2,14 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BookSelling.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="connectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Users\Viktor\Documents\Visual Studio 2013\Projects\Project\BookSelling\BookSelling\BookSelling\Database1.mdf";Integrated Security=True</Value>
-    </Setting>
     <Setting Name="Remembered" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="UserName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="connectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Users\Viktor\Documents\Visual Studio 2013\Projects\Project\BookSelling\BookSelling\BookSelling\Database1.mdf";Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
