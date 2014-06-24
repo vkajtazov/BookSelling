@@ -121,4 +121,22 @@
   <data name="books" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\books.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="don_kihot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\don kihot.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="monahot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monahot.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="na_edna_svadba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\na edna svadba.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="odbrana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\odbrana.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sloboda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloboda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smrtta_na_nil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smrtta na nil.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
