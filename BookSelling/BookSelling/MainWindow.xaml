@@ -93,7 +93,7 @@
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Path=Url, Converter={StaticResource ImageConv}}" Grid.Column="0"></Image>
+                                <Image Source="{Binding Path=Url}" Width="100" Height="100" Grid.Column="0"></Image>
                                 <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
@@ -140,6 +140,7 @@
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
+                    
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
