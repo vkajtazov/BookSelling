@@ -9,7 +9,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="connectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Programs\C#\BookSelling\BookSelling\BookSelling\Database1.mdf;Integrated Security=True</Value>
+      <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Users\Viktor\Documents\Visual Studio 2013\Projects\Project\BookSelling\BookSelling\BookSelling\Database1.mdf";Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
