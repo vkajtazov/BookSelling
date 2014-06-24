@@ -48,7 +48,7 @@
                     </ComboBox>
                 </StackPanel>
                 <CheckBox Name="RememberChk" Margin="20,0,0,0" Foreground="DarkRed" FontWeight="Medium">Remember me</CheckBox>
-                <Button Name="LoginBtn" Width="150" Margin="5,10,5,0" Click="LoginBtn_Click" >Login</Button>
+                <Button Name="LoginBtn" Width="150" Margin="5,10,5,0" Click="LoginBtn_Click" IsDefault="True" >Login</Button>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <Label  Name="usernameValidator" Margin="0,43,0,0" FontSize="20" FontWeight="Bold" Visibility="Hidden" Foreground="DarkRed">!</Label>
@@ -83,7 +83,7 @@
             </Menu>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label Name="AdminPanelBtn" HorizontalAlignment="Right" Margin="0,0,15,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">Admin Panel</Label>
-                <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">Basket</Label>
+                <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseDown="Label_MouseDown">Basket</Label>
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" FontWeight="Bold" MouseDown="LogOut_MouseDown">Log Out</Label>
             </StackPanel>
             <ListBox Name="lbKnigi" Grid.Column="1" Grid.Row="1" FontFamily="Comic Sans" FontSize="15">
@@ -134,7 +134,7 @@
                                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Count}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Button Name="btnBuy" VerticalAlignment="Center" HorizontalAlignment="Center" >Buy</Button>
+                                <Button Name="btnBuy" VerticalAlignment="Center" Tag="{Binding Path=Title}" HorizontalAlignment="Center" Click="btnBuy_Click" >Buy</Button>
                                     <TextBox Name="BuyCount" Margin="5,0,0,0" Width="20">1</TextBox>
                                 </StackPanel>
                             </Grid>

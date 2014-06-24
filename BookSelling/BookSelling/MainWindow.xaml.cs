@@ -25,7 +25,7 @@ namespace BookSelling
     {
 
         private static string connectionString = BookSelling.Properties.Settings.Default.connectionString;
-        private string[] MenuList;
+        private List<CheckBox> OrderBooksList;
         private static int heights = 25;
         private static int widths = 75;
         private DispatcherTimer Timer;
@@ -35,6 +35,7 @@ namespace BookSelling
         public MainWindow()
         {
             InitializeComponent();
+            OrderBooksList = new List<CheckBox>();
             if (Properties.Settings.Default.Remembered==true)
             {
                 LoginView.Visibility = Visibility.Collapsed;
@@ -121,6 +122,7 @@ namespace BookSelling
 
         private void Login() {
             checkAuthority();
+            OrderBooksList = new List<CheckBox>();
             LoginView.Visibility = Visibility.Collapsed;
             loadTimer();
             widths = 75;
@@ -209,10 +211,12 @@ namespace BookSelling
             if (!(bool)RememberChk.IsChecked)
             {
                 clearLoginFields();
+                
             }
             Properties.Settings.Default.Remembered = false;
             Properties.Settings.Default.UserName = null;
             Properties.Settings.Default.Save();
+            OrderBooksList = new List<CheckBox>();
         }
 
         private void clearLoginFields()
@@ -241,6 +245,20 @@ namespace BookSelling
         private void AllBooksClick(object sender, RoutedEventArgs e)
         {
             lbKnigi.ItemsSource = DatabaseConnectionFile.getDataTable("Books").DefaultView;
+        }
+
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            CheckBox c = new CheckBox();
+            c.Content = b.Tag;
+            OrderBooksList.Add(c);
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Basket b = new Basket(OrderBooksList);
+            b.Show();
         }
 
 
