@@ -57,9 +57,9 @@ namespace BookSelling
         {
             try
             {
-                DatabaseConnectionFile.insertBook(tbTitle.Text, tbAuthor.Text, tbGenre.Text,
+                DatabaseConnectionFile.insertBook(tbTitle.Text, tbAuthor.Text,cbGenre.SelectedValue.ToString(),
                     tbPrice.Text, tbProm.Text, tbCount.Text, fileName);
-
+                DialogResult = true;
             }
             catch (Exception)
             {
@@ -67,6 +67,11 @@ namespace BookSelling
                 throw;
             }
             this.Close();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }
