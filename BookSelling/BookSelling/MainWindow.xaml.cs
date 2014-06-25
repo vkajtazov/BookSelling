@@ -25,7 +25,7 @@ namespace BookSelling
     {
 
         private static string connectionString = BookSelling.Properties.Settings.Default.connectionString;
-        private List<CheckBox> OrderBooksList;
+        private List<Book> OrderBooksList;
         private static int heights = 25;
         private static int widths = 75;
         private DispatcherTimer Timer;
@@ -35,7 +35,7 @@ namespace BookSelling
         public MainWindow()
         {
             InitializeComponent();
-            OrderBooksList = new List<CheckBox>();
+            OrderBooksList = new List<Book>();
             if (Properties.Settings.Default.Remembered==true)
             {
                 LoginView.Visibility = Visibility.Collapsed;
@@ -122,7 +122,7 @@ namespace BookSelling
 
         private void Login() {
             checkAuthority();
-            OrderBooksList = new List<CheckBox>();
+            OrderBooksList = new List<Book>();
             LoginView.Visibility = Visibility.Collapsed;
             loadTimer();
             widths = 75;
@@ -216,7 +216,7 @@ namespace BookSelling
             Properties.Settings.Default.Remembered = false;
             Properties.Settings.Default.UserName = null;
             Properties.Settings.Default.Save();
-            OrderBooksList = new List<CheckBox>();
+            OrderBooksList = new List<Book>();
         }
 
         private void clearLoginFields()
@@ -250,9 +250,17 @@ namespace BookSelling
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
-            CheckBox c = new CheckBox();
-            c.Content = b.Tag;
-            OrderBooksList.Add(c);
+            Label l = b.FindName("BuyLbl") as Label;
+            DataRowView dr = b.Tag as DataRowView;
+            TextBox t = l.Tag as TextBox;
+
+            string prom = dr["Promotions"].ToString();
+            string cena = dr["Price"].ToString();
+            string title = dr["Title"].ToString();
+            string count = t.Text;
+
+            Book book = new Book(title, Convert.ToInt32(cena), Convert.ToInt32(prom), Convert.ToInt32(count));
+            OrderBooksList.Add(book);
         }
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)

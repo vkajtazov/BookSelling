@@ -92,6 +92,7 @@
     <Compile Include="Basket.xaml.cs">
       <DependentUpon>Basket.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Book.cs" />
     <Compile Include="CheckPromotionsConverter.cs" />
     <Compile Include="DatabaseConnectionFile.cs" />
     <Compile Include="GenreConverter.cs" />

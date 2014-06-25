@@ -24,9 +24,11 @@ namespace BookSelling
             InitializeComponent();
         }
 
-        public Basket(List<CheckBox>list)
+        public Basket(List<Book>list)
         {
             InitializeComponent();
+
+            int f = list.Count;
             OrderProducts.ItemsSource = list;
         }
     }

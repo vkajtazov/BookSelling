@@ -107,7 +107,7 @@
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                                         <TextBlock Text="Title: "></TextBlock>
-                                        <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                                        <TextBlock Name="Title" Text="{Binding Path=Title}" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                         <TextBlock Text="Author: "></TextBlock>
@@ -122,19 +122,21 @@
                                 <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                         <TextBlock>Price:</TextBlock>
-                                        <TextBlock Text="{Binding Path=Price}" TextDecorations="{Binding Path=Promotions,  Converter={StaticResource CheckPromotionsConverter}}"></TextBlock>
+                                        <TextBlock Name="Price" Text="{Binding Path=Price}" TextDecorations="{Binding Path=Promotions,  Converter={StaticResource CheckPromotionsConverter}}"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Left" Visibility="{Binding Path=Promotions, Converter={StaticResource isPromotions}}">
                                         <TextBlock>Prom Price:</TextBlock>
-                                        <TextBlock Text="{Binding  Converter={StaticResource PromotionPrice}}"></TextBlock>
+                                        <TextBlock Name="PromPrice" Text="{Binding  Converter={StaticResource PromotionPrice}}"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <TextBlock HorizontalAlignment="Center">Count: </TextBlock>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Count}"></TextBlock>
+                                <TextBlock Name="Count" HorizontalAlignment="Center" Text="{Binding Path=Count}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Button Name="btnBuy" VerticalAlignment="Center" Tag="{Binding Path=Title}" HorizontalAlignment="Center" Click="btnBuy_Click" >Buy</Button>
+                                    <Button Name="btnBuy" VerticalAlignment="Center" Tag="{Binding}"  HorizontalAlignment="Center" Click="btnBuy_Click" >
+                                        <Label Name="BuyLbl" Tag="{Binding ElementName=BuyCount}">Buy</Label>
+                                    </Button>
                                     <TextBox Name="BuyCount" Margin="5,0,0,0" Width="20">1</TextBox>
                                 </StackPanel>
                             </Grid>
