@@ -41,5 +41,9 @@
             <TextBlock>Upload Image:</TextBlock>
             <Button Content="Upload" HorizontalAlignment="Left" Click="Button_Click"/>
         </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
+            <Button Margin="5" Width="50" HorizontalAlignment="Left" Name="btnOK" Click="btnOK_Click">OK</Button>
+            <Button Margin="5" HorizontalAlignment="Right" Name="btnCancel">Cancel</Button>
+        </StackPanel>
     </Grid>
 </Window>

@@ -41,8 +41,32 @@ namespace BookSelling
                 // Open document 
                 fileName = ofd.FileName;
                 Debug.WriteLine(fileName);
-                Debug.WriteLine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                string file = System.IO.Path.GetFileName(fileName);
+                string destFile = AppDomain.CurrentDomain.BaseDirectory;
+                destFile = destFile.Substring(0, destFile.LastIndexOf("\\"));
+                destFile = destFile.Substring(0, destFile.LastIndexOf("\\"));
+                destFile = destFile.Substring(0, destFile.LastIndexOf("\\"));
+                destFile = destFile + "\\Resources\\" + file;
+                File.Copy(fileName, destFile,true);
+                fileName = destFile;
+                //File.Copy(fileName,destFile);
             }
+        }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DatabaseConnectionFile.insertBook(tbTitle.Text, tbAuthor.Text, tbGenre.Text,
+                    tbPrice.Text, tbProm.Text, tbCount.Text, fileName);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            this.Close();
         }
     }
 }
