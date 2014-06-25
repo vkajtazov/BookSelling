@@ -3,9 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Basket" Height="300" Width="300">
     <Grid>
-        <ListBox Name="OrderProducts" ItemsSource="{Binding Path=Title}">
-           
-        </ListBox>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+            
+            
+        <ListBox Grid.Row="0" Name="OrderProducts" ItemsSource="{Binding Path=Title}"></ListBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Label HorizontalAlignment="Left">Total Sum: </Label>
+            <Label Name="TotalSum"></Label>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="PayBtn" Margin="5" Click="PayBtn_Click">Pay</Button>
+            <Button Name="CancelBtn" Margin="5" Click="CancelBtn_Click">Cancel</Button>
+            
+        </StackPanel>
     </Grid>
 </Window>
