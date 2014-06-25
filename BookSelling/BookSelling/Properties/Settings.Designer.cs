@@ -72,5 +72,17 @@ namespace BookSelling.Properties {
                 this["ID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int Authority {
+            get {
+                return ((int)(this["Authority"]));
+            }
+            set {
+                this["Authority"] = value;
+            }
+        }
     }
 }

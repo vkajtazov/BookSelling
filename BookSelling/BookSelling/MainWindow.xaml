@@ -79,10 +79,9 @@
                     <MenuItem Tag="5" Header="Comedy" Click="CategoryClick"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Promotions" Click="PromotionMenuClick"></MenuItem>
-                <MenuItem Header="Collections"></MenuItem>
             </Menu>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Label Name="AdminPanelBtn" HorizontalAlignment="Right" Margin="0,0,15,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseDown="AdminPanelBtn_MouseDown">Admin Panel</Label>
+                <Label Name="AdminPanelBtn" HorizontalAlignment="Right" Margin="0,0,15,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseDown="AdminPanelBtn_MouseDown" Visibility="Collapsed">Admin Panel</Label>
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" FontWeight="Bold" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseDown="Label_MouseDown">Basket</Label>
                 <Label HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="15" Foreground="DarkRed" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" FontWeight="Bold" MouseDown="LogOut_MouseDown">Log Out</Label>
             </StackPanel>

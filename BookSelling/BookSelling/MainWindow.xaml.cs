@@ -44,6 +44,7 @@ namespace BookSelling
                 heights = 25;
                 Timer.Start();
                 LoggedAs.Content = "Logged as: " + Properties.Settings.Default.UserName;
+                if (Properties.Settings.Default.Authority == 1) { AdminPanelBtn.Visibility = Visibility.Visible; }
             }
             // testing connection with database
             //    lst.ItemsSource = DatabaseConnectionFile.getDataTable("Users").DefaultView;
@@ -131,6 +132,7 @@ namespace BookSelling
             LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
             Properties.Settings.Default.Remembered = (bool)RememberChk.IsChecked;
             Properties.Settings.Default.UserName = UsernameTxt.Text;
+            Properties.Settings.Default.Authority = getAuthority();
             Properties.Settings.Default.Save();
         }
 
@@ -266,7 +268,10 @@ namespace BookSelling
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Basket b = new Basket(OrderBooksList);
-            b.Show();
+            b.ShowDialog();
+            if (b.DialogResult == true) {
+                OrderBooksList.Clear();
+            }
         }
 
         private void AdminPanelBtn_MouseDown(object sender, MouseButtonEventArgs e)

@@ -14,5 +14,8 @@
     <Setting Name="ID" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">7</Value>
     </Setting>
+    <Setting Name="Authority" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
