@@ -25,7 +25,7 @@ namespace BookSelling
     {
 
         private static string connectionString = BookSelling.Properties.Settings.Default.connectionString;
-        private string[] MenuList;
+        private List<CheckBox> OrderBooksList;
         private static int heights = 25;
         private static int widths = 75;
         private DispatcherTimer Timer;
@@ -35,6 +35,7 @@ namespace BookSelling
         public MainWindow()
         {
             InitializeComponent();
+            OrderBooksList = new List<CheckBox>();
             if (Properties.Settings.Default.Remembered==true)
             {
                 LoginView.Visibility = Visibility.Collapsed;
@@ -119,22 +120,41 @@ namespace BookSelling
         }
 
 
+        private void Login() {
+            checkAuthority();
+            OrderBooksList = new List<CheckBox>();
+            LoginView.Visibility = Visibility.Collapsed;
+            loadTimer();
+            widths = 75;
+            heights = 25;
+            Timer.Start();
+            LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
+            Properties.Settings.Default.Remembered = (bool)RememberChk.IsChecked;
+            Properties.Settings.Default.UserName = UsernameTxt.Text;
+            Properties.Settings.Default.Save();
+        }
 
+        private void checkAuthority() { 
+            ComboBoxItem item = (ComboBoxItem)UserSelection.SelectedItem;
+            string t = item.Content.ToString();
+            if (t == "User") AdminPanelBtn.Visibility = Visibility.Hidden;
+            if (t == "Administrator") AdminPanelBtn.Visibility = Visibility.Visible;
+        }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
 
             if (checkRequiredFields())
             {
-                LoginView.Visibility = Visibility.Collapsed;
-                loadTimer();
-                widths = 75;
-                heights = 25;
-                Timer.Start();
-                LoggedAs.Content = "Logged as: " + UsernameTxt.Text;
-                Properties.Settings.Default.Remembered =(bool) RememberChk.IsChecked;
-                Properties.Settings.Default.UserName = UsernameTxt.Text;
-                Properties.Settings.Default.Save();
+                if (DatabaseConnectionFile.isLogin(UsernameTxt.Text, PasswordTxt.Password, getAuthority()))
+                {
+                    Login();
+                }
+                else
+                {
+                    clearLoginFields();
+                    checkRequiredFields();
+                }
             }
 
         }
@@ -191,10 +211,12 @@ namespace BookSelling
             if (!(bool)RememberChk.IsChecked)
             {
                 clearLoginFields();
+                
             }
             Properties.Settings.Default.Remembered = false;
             Properties.Settings.Default.UserName = null;
             Properties.Settings.Default.Save();
+            OrderBooksList = new List<CheckBox>();
         }
 
         private void clearLoginFields()
@@ -202,6 +224,15 @@ namespace BookSelling
             UsernameTxt.Text = "";
             PasswordTxt.Password = "";
             UserSelection.SelectedIndex = 0;
+        }
+
+        private int getAuthority() {
+
+            ComboBoxItem item = (ComboBoxItem) UserSelection.SelectedItem;
+
+            if (item.Content.ToString()== "User") return 2;
+            else if (item.Content.ToString() == "Administrator") return 1;
+            return 0;
         }
 
         private void CategoryClick(object sender, RoutedEventArgs e)
@@ -214,6 +245,25 @@ namespace BookSelling
         private void AllBooksClick(object sender, RoutedEventArgs e)
         {
             lbKnigi.ItemsSource = DatabaseConnectionFile.getDataTable("Books").DefaultView;
+        }
+
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            CheckBox c = new CheckBox();
+            c.Content = b.Tag;
+            OrderBooksList.Add(c);
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Basket b = new Basket(OrderBooksList);
+            b.Show();
+        }
+
+        private void AdminPanelBtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
 
