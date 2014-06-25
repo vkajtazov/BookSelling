@@ -78,7 +78,7 @@
                     <MenuItem Tag="4" Header="Tragedy" Click="CategoryClick"></MenuItem>
                     <MenuItem Tag="5" Header="Comedy" Click="CategoryClick"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Promotions"></MenuItem>
+                <MenuItem Header="Promotions" Click="PromotionMenuClick"></MenuItem>
                 <MenuItem Header="Collections"></MenuItem>
             </Menu>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">

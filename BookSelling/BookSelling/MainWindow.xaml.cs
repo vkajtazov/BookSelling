@@ -275,6 +275,11 @@ namespace BookSelling
             add.ShowDialog();
         }
 
+        private void PromotionMenuClick(object sender, RoutedEventArgs e)
+        {
+            lbKnigi.ItemsSource = DatabaseConnectionFile.getPromotions().DefaultView;
+        }
+
 
 
 
