@@ -266,16 +266,15 @@ namespace BookSelling
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Basket b = new Basket(OrderBooksList);
-            b.ShowDialog();
-            if (b.DialogResult == true) {
-                OrderBooksList.Clear();
-            }
+            b.Show();
         }
 
         private void AdminPanelBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             AddNewBooks add = new AddNewBooks();
-            add.ShowDialog();
+            if (add.ShowDialog()==true)
+                lbKnigi.ItemsSource = DatabaseConnectionFile.getDataTable("Books").DefaultView;
+
         }
 
         private void PromotionMenuClick(object sender, RoutedEventArgs e)

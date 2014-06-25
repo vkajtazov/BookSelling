@@ -101,9 +101,10 @@ namespace BookSelling
                 "(Id, Title, Author, Genre, Price, Promotions, Count, Url) "+
                 "VALUES(@id, @title, @author, @genre, @price, @promo, @count, @url)",
                 connection);
-            int id=Properties.Settings.Default.ID;
-            Properties.Settings.Default.ID = id + 1;
-            command.Parameters.AddWithValue("@id", 7);
+
+            SqlCommand komanda = new SqlCommand("Select max(Id) from Books",connection);
+            
+            
             command.Parameters.AddWithValue("@title", title);
             command.Parameters.AddWithValue("@author", author);
             command.Parameters.AddWithValue("@genre", genre);
@@ -114,6 +115,8 @@ namespace BookSelling
             try
             {
                 connection.Open();
+                int broj = Convert.ToInt32(komanda.ExecuteScalar());
+                command.Parameters.AddWithValue("@id", broj+1);
                 command.ExecuteNonQuery();
             }
             finally
