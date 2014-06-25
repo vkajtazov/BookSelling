@@ -275,7 +275,7 @@ namespace BookSelling
         private void AdminPanelBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             AddNewBooks add = new AddNewBooks();
-
+            add.ShowDialog();
         }
 
         private void PromotionMenuClick(object sender, RoutedEventArgs e)
