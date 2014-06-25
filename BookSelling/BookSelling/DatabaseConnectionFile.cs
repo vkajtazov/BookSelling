@@ -20,8 +20,17 @@ namespace BookSelling
             SqlDataAdapter adapter = new SqlDataAdapter(command);
 
             DataSet ds = new DataSet();
-            adapter.Fill(ds, table);
-            return ds.Tables[0];
+            try
+            {
+                connection.Open();
+                adapter.Fill(ds, table);
+                return ds.Tables[0];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally { connection.Close(); }
         }
 
         public static bool isLogin(string username, string password, int authority) {

@@ -263,7 +263,8 @@ namespace BookSelling
 
         private void AdminPanelBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            AddNewBooks add = new AddNewBooks();
+            add.ShowDialog();
         }
 
 
