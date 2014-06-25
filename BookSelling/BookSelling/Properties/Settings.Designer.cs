@@ -59,5 +59,17 @@ namespace BookSelling.Properties {
                 this["connectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int ID {
+            get {
+                return ((int)(this["ID"]));
+            }
+            set {
+                this["ID"] = value;
+            }
+        }
     }
 }

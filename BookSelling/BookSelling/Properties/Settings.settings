@@ -11,5 +11,8 @@
     <Setting Name="connectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Programs\C#\BookSelling\BookSelling\BookSelling\Database1.mdf;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="ID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

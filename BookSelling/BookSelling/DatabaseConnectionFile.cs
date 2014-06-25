@@ -31,10 +31,28 @@ namespace BookSelling
                 connection);
             command.CommandType = CommandType.Text;
             SqlDataAdapter adapter = new SqlDataAdapter(command);
-
             DataSet ds = new DataSet();
             adapter.Fill(ds, "Tabela");
             return ds.Tables[0];
+        }
+
+        public static void insertBook(string title,string author, string genre,string price,
+            string promotions,string count, string url)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand("INSERT INTO Books from Books "+ 
+                "(Id, Title, Author, Genre, Price, Promotions, Count, Url) "+
+                "VALUES(@id, @author, @genre, @price, @promo, @count, @url)",
+                connection);
+            int id=Properties.Settings.Default.ID;
+            Properties.Settings.Default.ID = id + 1;
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@author", author);
+            command.Parameters.AddWithValue("@genre", genre);
+            command.Parameters.AddWithValue("@price", price);
+            command.Parameters.AddWithValue("@promo", promotions);
+            command.Parameters.AddWithValue("@count", count);
+            command.Parameters.AddWithValue("@url", url);
         }
     }
 }
