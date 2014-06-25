@@ -30,6 +30,34 @@ namespace BookSelling
 
             int f = list.Count;
             OrderProducts.ItemsSource = list;
+            setTotalSum(list);
+
+
         }
+
+        private void setTotalSum(List<Book> list) {
+            int sum = 0;
+            
+            foreach (Book b in list)
+            {
+                sum += b.getSum();
+            }
+
+            TotalSum.Content = sum.ToString();
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
+        }
+
+        private void PayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
+
+
     }
 }
